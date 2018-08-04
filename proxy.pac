@@ -1,16 +1,3 @@
-var FindProxyForURL = function(init, profiles) {
-    return function(url, host) {
-        "use strict";
-        var result = init, scheme = url.substr(0, url.indexOf(":"));
-        do {
-            result = profiles[result];
-            if (typeof result === "function") result = result(url, host, scheme);
-        } while (typeof result !== "string" || result.charCodeAt(0) === 43);
-        return result;
-    };
-}("+proxyServer", {
-    "+proxyServer": function() {
-        ;
 var wall_proxy = "SOCKS5 100.80.129.65:1080; SOCKS 100.80.129.65:1080";
 var nowall_proxy = "DIRECT;";
 var direct = "DIRECT;";
@@ -9707,10 +9694,3 @@ function FindProxyForURL(url, host) {
 	}
 	return wall_proxy;
 }
-
-
-
-/* End of PAC */;
-        return FindProxyForURL;
-    }.call(this)
-});
